@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root{
+    font-size: 10px;
+    --primary-color: hsl(138, 99%, 36%);
+    --secondary-color: hsl(141, 62%, 53%);
+    --third-color: hsl(141, 66%, 47%);
+    --bg-color: hsl(0, 0%, 94%);
+    --surface-color: hsl(0, 0%, 60%);
+    --link-color: hsl(207, 100%, 70%);
+    --dark-bg-color: hsl(139, 45%, 7%);
+
+}
+
+
+main{
+    background-color: var(--surface-color);
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    padding: 10rem 1rem 1rem 1rem;
+}
+  
+
+
+a,p{
+  font-size: 1.5rem;
+}
+
+p{
+  color: var(--primary-color);
+  word-wrap: break-word;
+}
+
+a{
+  text-decoration: none;
+  color: var(--link-color);
+}
+
+h1{
+  font-size: 2rem;
+  color: var(--secondary-color);
+}
+
+h2{
+  font-size: 1.8rem;
+  color: var(--secondary-color);
+}
+
+h3{
+  font-size: 1.7rem;
+  color: var(--secondary-color) ;
+}
+
+li{
+  list-style-type: none;
+  color: var(--secondary-color);
+}
+
+select, button, select:focus{
+  background-color: var(--bg-color);
+  color: var(--primary-color);
+  padding:1rem 1.5rem;
+  border: none;
+  font-size: 1.5rem;
+  border-top: 6px solid var(--link-color);
+  border-bottom: 2px solid var(--link-color);
+  border-left: 6px solid var(--primary-color);
+  border-right: 0.6px solid var(--primary-color);
+}
+button{
+  font-weight: bold;
+}
+button:hover{
+  cursor: pointer;
+}
+form{
+  display: flex;
+  flex-direction: column;
+  background-color: var(--dark-bg-color);
+  padding: 3rem 2rem;
+  border-radius:1rem;
+  width: 40rem;
+  min-width: 30rem;
+  position: relative;
+  margin: 0 auto;
+}
+form input, form textarea, form button{
+  margin: 1rem 0;
+  padding: 0.9rem 2rem 1rem 2rem;
+  border: none;
+  outline: none;
+  transition: 0.5s all;
+  background-color: white;
+  color: black;
+}
+form input[type="password"]{
+  padding: 0.9rem 4rem 1rem 2rem;
+}
+form input:focus, form textarea:focus,  form button:hover{
+  box-shadow: 0 0 5px  white;
+  border-radius: 2rem;
+  background-color: var(--transparent-color);
+  color: white;
+}
+form textarea{
+  resize: none;
+  height: 7rem;
+}
+form .formHeading h1{
+  margin: 0 0 2rem 1rem;
+  font-size: 2.5rem !important;
+
+}
+.passwordDiv{
+  width: 100%;
+  position: relative;
+}
+.passwordDiv svg{
+  position: absolute;
+  right: 1rem;
+  top: 1.7rem;
+  color: #337976;
+}
+
+.passwordDiv svg:hover{
+  cursor: pointer;
+  filter: drop-shadow(0 0 5px currentColor);
+
+}
+.passwordDiv input{
+  width: 100%;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}

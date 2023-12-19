@@ -1,0 +1,112 @@
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--bg-color);
+    padding: 1rem 3rem;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+}
+.close-ul{
+    display: none;
+}
+.menu-btn{
+    display: none;
+}
+.leftNav, .rightNav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav ul{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 0 -8rem;
+    transition: 0.8s all;
+}
+.navHeadCon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.navHeadCon img{
+    height: 4rem;
+    filter: drop-shadow(0 0 5px var(--secondary-color));
+    margin: 0 1rem 0 0;
+}
+.navHeadCon h1{
+    font-size: 2.5rem;
+}
+
+nav ul li a{
+    padding: 1rem;
+    text-transform: capitalize;
+}
+
+.active{
+    font-weight: bold;
+    text-shadow: 0 0 20px currentColor;
+    font-size: 1.7rem;
+    transition: 0.5s all;
+}
+.activeBox{
+    transition: 0.5s all;
+    box-shadow: 0 0 10px currentColor;
+}
+
+.loginCon{
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    background-color: var(--third-color);
+    transition: 0.5s all;
+}
+
+.logout:hover{
+    filter: drop-shadow( 0 0 5px currentColor);
+}
+
+@media screen and (max-width: 600px) {
+    nav{
+        justify-content: center;
+    }
+    nav ul{
+        margin: 0;
+        flex-direction: column;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        padding: 1rem;
+        background-color: var(--bg-color);
+        top: 0;
+        height: 100vh;
+        padding: 8rem 0 0 0 ;
+        justify-content: start;
+        transform: translateX(-100vw);
+    }
+    nav ul li {
+        margin: 1rem 0;
+    }
+    .close-ul{
+        display: block;
+        color: var(--primary-color);
+        position: absolute;
+        top: 1.8rem;
+        left: 3rem;
+    }
+    .menu-btn{
+        color: var(--primary-color);
+        display: block;
+        position: absolute;
+        top: 1.8rem;
+        left: 3rem;
+    }
+    .rightNav{
+        display: none;
+    }
+}
+

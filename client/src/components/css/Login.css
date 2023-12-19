@@ -1,0 +1,11 @@
+.formMainCon{
+    display: flex;
+    align-items: start;
+    justify-content: center;
+}
+.formMainCon form{
+    margin: 3rem 0 0 0;
+}
+.formMainCon .alert{
+    top: 8.3rem !important;
+}

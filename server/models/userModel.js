@@ -29,8 +29,8 @@ const userSchema =  mongoose.Schema({
         default: Date.now
     },
     address:{
-        type: [{type: mongoose.Types.ObjectId, ref: "address"}],
-        default: []
+        type: [{type: mongoose.Schema.Types.ObjectId, ref: "address"}],
+        default: [],
     },
     isAdmin:{
         type: Boolean,
