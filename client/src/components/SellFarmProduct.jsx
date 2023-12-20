@@ -1,10 +1,8 @@
 import { useContext, useState } from "react";
 import AlertContext from "../context/alert/AlertContext";
 import ProgressContext from "../context/progressbar/ProgressContext";
-import { useNavigate } from "react-router-dom";
 import ReactStars from "react-stars";
 import "./css/SellFarmProduct.css";
-import { X } from "lucide-react";
 
 const SellFarmProduct = () => {
     const a = useContext(AlertContext);
@@ -14,8 +12,6 @@ const SellFarmProduct = () => {
 
     const [product, setProduct] = useState({ title: "", description: "", price: "", category: "", from: "farmer", quantity: "", sold: 0, measurement: "", userId: "", rating: 0, address: "" });
     const [address, setAddress] = useState({ place: "", city: "", taluka: "", district: "", pincode: "" })
-
-    const navigator = useNavigate();
 
 
     const storeAddress = async () => {
@@ -109,17 +105,22 @@ const SellFarmProduct = () => {
 
             if (json.status === "success") {
                 a.setAlert({ status: "success", msg: ["यशस्वीरित्या शेतमाल जोडला"], isDone: false })
+                setProduct({ title: "", description: "", price: "", category: "", from: "farmer", quantity: "", sold: 0, measurement: "", userId: "", rating: 0, address: "" });
+                setAddress({ place: "", city: "", taluka: "", district: "", pincode: "" });
+                Array.from(document.getElementById("imgCon").getElementsByTagName("img")).forEach(img=>img.src="");
+                const selects = Array.from(document.getElementsByClassName("select"));
+                selects.forEach(select=>select.selectedIndex=0);
+                Array.from(document.getElementsByClassName("fileInput")).forEach(file=>file.value=null);
             }
             else {
                 a.setAlert({ status: "danger", msg: json.result, isDone: false })
                 const URL = `${process.env.REACT_APP_API_URL}address/${addressId}`;
-                const response = await fetch(URL, {
+                await fetch(URL, {
                     method: "DELETE",
                     headers: {
                         "auth-token": JSON.parse(localStorage.getItem("auth-token"))
                     },
                 });
-                const addJson = await response.json();
             }
 
         } catch (error) {
@@ -164,14 +165,14 @@ const SellFarmProduct = () => {
                 <div className="inputCon">
 
                     <input required onChange={handleChange} value={product.quantity} type="number" name="quantity" id="quantity" placeholder="मालाचे प्रमाण भरा" />
-                    <select name="measurement" required={true} onChange={handleSelectChange}>
+                    <select name="measurement" required={true} onChange={handleSelectChange} className="select" >
                         <option value="">मालाचा माप निवडा? </option>
                         <option value="किलो">किलो</option>
                         <option value="नग">नग</option>
                     </select>
                 </div>
 
-                <select name="category" required={true} onChange={handleSelectChange}>
+                <select name="category" required={true} onChange={handleSelectChange} className="select">
                     <option value="">मालाचा प्रकार निवडा? </option>
                     <option value="fruit">फळ</option>
                     <option value="vegetable">भाजी</option>
@@ -182,6 +183,7 @@ const SellFarmProduct = () => {
 
                 <p>रेटिंग निवडा:</p>
                 <ReactStars
+                    required
                     count={5}
                     size={24}
                     isHalf={true}
@@ -206,17 +208,15 @@ const SellFarmProduct = () => {
                 <h2>प्रतिमा अपलोड करा:</h2>
 
                 <div className="inputCon">
-                    <input onChange={(e) => document.getElementById("imgMain").src = URL.createObjectURL(e.currentTarget.files[0])} required type="file" name="image" accept="image/*" />
-                    <input onChange={(e) => document.getElementById("secImg").src = URL.createObjectURL(e.currentTarget.files[0])} required type="file" name="image" accept="image/*" />
-                    <input onChange={(e) => document.getElementById("optImg").src = URL.createObjectURL(e.currentTarget.files[0])} type="file" name="image" accept="image/*" />
+                    <input onChange={(e) => document.getElementById("imgMain").src = URL.createObjectURL(e.currentTarget.files[0])} required type="file" name="image" accept="image/*" className="fileInput"/>
+                    <input onChange={(e) => document.getElementById("secImg").src = URL.createObjectURL(e.currentTarget.files[0])} required type="file" name="image" accept="image/*" className="fileInput"/>
+                    <input onChange={(e) => document.getElementById("optImg").src = URL.createObjectURL(e.currentTarget.files[0])} type="file" name="image" accept="image/*" className="fileInput"/>
                 </div>
 
                 <div id="imgCon">
                     <img src="" alt="मुख्य प्रतिमा" id="imgMain" />
                     <img src="" alt="दुसरी प्रतिमा" id="secImg" />
                     <img src="" alt="पर्यायी प्रतिमा" id="optImg" />
-
-
                 </div>
 
                 <button>शेतमाल जोडा</button>

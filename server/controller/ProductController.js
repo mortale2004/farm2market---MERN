@@ -62,20 +62,12 @@ const createProduct = async (req, res) => {
 
         req.body.userId = req.user.id;
 
-       
-
-
         const product = await Product.create({ ...req.body, images: images });
 
         let user = await User.findById(req.user.id);
         
-        console.log(user);
-        
         user.sell.push(product._id)
         user = await User.findByIdAndUpdate(req.user.id, user, {new: true});
-
-        console.log(user);
-
 
         return res.status(201).json({ status: "success", result: [product] });
 
@@ -120,7 +112,6 @@ const deleteProduct = async (req, res) => {
         }
 
         let user = await User.findById(product.userId);
-        console.log(user);
 
         user.sell = user.sell.filter(s=> s.toString()!==req.params.id);
 
