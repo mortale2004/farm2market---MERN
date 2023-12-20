@@ -1,8 +1,8 @@
-nav{
+.navbar{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--bg-color);
+    background-color: var(--dark-bg-color);
     padding: 1rem 3rem;
     position: fixed;
     top: 0;
@@ -21,7 +21,7 @@ nav{
     justify-content: center;
 }
 
-nav ul{
+.navbar ul{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,7 +42,7 @@ nav ul{
     font-size: 2.5rem;
 }
 
-nav ul li a{
+.navbar ul li a{
     padding: 1rem;
     text-transform: capitalize;
 }
@@ -62,7 +62,6 @@ nav ul li a{
     width: 5rem;
     height: 5rem;
     border-radius: 50%;
-    background-color: var(--third-color);
     transition: 0.5s all;
 }
 
@@ -71,10 +70,10 @@ nav ul li a{
 }
 
 @media screen and (max-width: 600px) {
-    nav{
+    .navbar{
         justify-content: center;
     }
-    nav ul{
+    .navbar ul{
         margin: 0;
         flex-direction: column;
         position: absolute;
@@ -88,7 +87,7 @@ nav ul li a{
         justify-content: start;
         transform: translateX(-100vw);
     }
-    nav ul li {
+    .navbar ul li {
         margin: 1rem 0;
     }
     .close-ul{

@@ -8,7 +8,7 @@ const LoginState = ({children})=>{
 
     const a = useContext(AlertContext);
 
-    const URL = `${process.env.REACT_APP_API_URL}auth/getuser`;
+    const URL = `${process.env.REACT_APP_API_URL}auth/users/getuser`;
     const [loggedIn, setLoggedIn] = useState(false);
     const [authToken, setAuthToken] = useState(JSON.parse(localStorage.getItem("auth-token")));
     const navigator = useNavigate();
@@ -29,11 +29,11 @@ const LoginState = ({children})=>{
             {
                 setLoggedIn(true);
                 navigator(loc.pathname);
-                a.setAlert({status:json.status, msg: ["Login Successful"], isDone: false})
+                a.setAlert({status:json.status, msg: ["लॉगिन यशस्वी"], isDone: false})
             }
             else
             {
-                a.setAlert({status:"success", msg: ["Logged Out Succussfully"], isDone: false})
+                a.setAlert({status:"success", msg: ["यशस्वीरित्या लॉग आउट केले"], isDone: false})
                 setLoggedIn(false);
                 navigator("/register")
 

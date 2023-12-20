@@ -1,0 +1,83 @@
+.product-slider{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-width: 1200px;
+    margin: 5rem auto;
+}
+.headingContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.headingContainer h1{
+    color: rgb(0, 19, 29);
+    font-size: 3rem;
+}
+.buttonsCon svg{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--dark-bg-color);
+    color: white;
+    width: 3rem;
+    height: 7rem;
+}
+.buttonsCon svg:nth-child(1)
+{
+    left: 0rem;
+}
+.buttonsCon svg:nth-child(2)
+{
+    right: 0rem;
+}
+.sliderContainer{
+    display: flex;
+    align-items: center;
+    overflow-x: scroll;
+    transition: 1s all;
+    scroll-behavior: smooth;
+    padding: 0 1.5rem;
+}
+.sliderContainer::-webkit-scrollbar{
+    display: none;
+}
+.slide{
+    min-width: 225px;
+    height: 225px;
+    background-color: var(--bg-color);
+    border-radius: 1rem;
+    margin: 1rem;
+}
+.slide img{
+    height: 60%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 1rem 1rem 0 0;
+}
+.textCon{
+    height:40%;
+    padding: 1rem;
+}
+.textCon  p, h3{
+    color: black;
+}
+.textCon h3{
+    font-size: 1.5rem;
+}
+.textCon h4{
+    font-size: 1.2rem;
+}
+.buySell{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin:0.5rem 0;
+}
+.buySell span{
+    background-color: brown;
+    color: white;
+    padding: 0.5rem 2rem;
+    margin: 0 0 0 1rem;
+    cursor: pointer;
+}

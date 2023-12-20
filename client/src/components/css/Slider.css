@@ -1,0 +1,21 @@
+.awssld {
+    height: 80vh;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 700px) {
+    .awssld{
+        height: 50vh;
+    }
+    .awssld__bullets button{
+        height: 9px;
+        width: 9px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .awssld{
+        height: 30vh;
+    }
+}

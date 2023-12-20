@@ -39,7 +39,7 @@ const Login = ()=>{
     }
     else
     {
-      a.setAlert({status:"danger", msg: ["Enter Correct Username/Password"], isDone: false})
+      a.setAlert({status:"danger", msg: ["योग्य ईमेल/पासवर्ड टाका!"], isDone: false})
     }
   }
 

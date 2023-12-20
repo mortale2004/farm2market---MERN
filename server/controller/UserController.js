@@ -295,9 +295,9 @@ const editAddress = async (req, res) => {
     }
 }
 
-
-
-
+const getUser = (req, res)=>{
+    res.status(200).json({status:"success", result: ["Authorized"]});
+}
 
 
 module.exports = { 
@@ -310,5 +310,6 @@ deleteUser,
 addAddress, 
 deleteAddress, 
 editAddress,
-getAddresses
+getAddresses,
+getUser
 };

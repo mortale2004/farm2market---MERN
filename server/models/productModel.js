@@ -5,11 +5,6 @@ const productSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    slug: {
-        type: String,
-        required: true,
-        unique: true,
-    },
     description:{
         type: String,
         required: true,
@@ -19,8 +14,9 @@ const productSchema = mongoose.Schema({
         required: true,
     },
     category:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "category",
+        type: String,
+        required: true,
+        default:"general"
     },
     quantity: {
         type: Number,

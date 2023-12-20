@@ -1,6 +1,5 @@
 const { validationResult } = require("express-validator");
 const { Product } = require("../models/productModel");
-const slugify = require("slugify");
 const uploadCloud = require("../utils/cloudinary");
 const fs = require("fs");
 
@@ -53,21 +52,6 @@ const createProduct = async (req, res) => {
 
     try {
 
-        req.body.slug = slugify(req.body.title);
-
-        let product = await Product.findOne({ slug: req.body.slug });
-
-        if (product) {
-
-
-            for (const file of files) {
-                const { path } = file;
-                fs.unlinkSync(path);
-            }
-
-            return res.status(400).json({ status: "error", result: ["Choose Another Title"] });
-        }
-
         for (const file of files) {
             const { path } = file;
             const result = await uploadCloud(path);
@@ -76,7 +60,7 @@ const createProduct = async (req, res) => {
         }
 
 
-        product = await Product.create({ ...req.body, images: images });
+        const product = await Product.create({ ...req.body, images: images });
         return res.status(201).json({ status: "success", result: [product] });
 
     } catch (error) {
@@ -97,14 +81,6 @@ const updateProduct = async (req, res) => {
 
         if (!product) {
             return res.status(404).json({ status: "error", result: ["Product Not Found!"] });
-        }
-
-        req.body.slug = slugify(req.body.title);
-
-        product = await Product.findOne({ slug: req.body.slug });
-
-        if (product) {
-            return res.status(400).json({ status: "error", result: ["Choose Another Title"] });
         }
 
         product = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });

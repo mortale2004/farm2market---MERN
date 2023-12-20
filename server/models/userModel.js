@@ -35,6 +35,16 @@ const userSchema =  mongoose.Schema({
     isAdmin:{
         type: Boolean,
         default: false
+    },
+    role:{
+        type: String,
+        required: true
+    },
+    sell: {
+        type: [{type: mongoose.Types.ObjectId, ref: "products"}]
+    },
+    cart: {
+        type: [{type: mongoose.Types.ObjectId, ref: "products"}]
     }
 });
 

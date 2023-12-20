@@ -17,7 +17,6 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.resolve(__dirname, "../client/build")));
 
 app.use("/api/auth/users", require("./routes/UserRoutes"));
-// app.use("/api/auth/farmer", require("./routes/FarmerRoutes"));
 app.use("/api/products", require("./routes/ProductRoutes"));
 app.use("/api/category", require("./routes/CategoryRoutes"));
 
