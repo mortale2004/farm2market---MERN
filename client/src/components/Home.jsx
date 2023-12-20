@@ -56,6 +56,7 @@ const Home = () => {
         <ProductSlider title="फळे" items={pr.products.filter(product=>product.category==="fruit")}/>
         <ProductSlider title="पालेभाज्या" items={pr.products.filter(product=>product.category==="leafyvegetable")}/>
         <ProductSlider title="भाज्या" items={pr.products.filter(product=>product.category==="vegetable")}/>
+        <ProductSlider title="सॉस" items={pr.products.filter(product=>product.category==="sause")}/>
 
 
         

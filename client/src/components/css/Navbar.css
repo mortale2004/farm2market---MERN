@@ -25,7 +25,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 0 0 -8rem;
+    /* margin: 0 0 0 -8rem; */
     transition: 0.8s all;
 }
 .navHeadCon{
@@ -69,6 +69,31 @@
     filter: drop-shadow( 0 0 5px currentColor);
 }
 
+.searchCon{
+    position: relative;
+    margin: 0 1.5rem 0 0 ;
+
+}
+
+.searchCon svg{
+    position: absolute;
+    left: 3px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--link-color);
+}
+
+.searchCon input{
+    padding: 0.5rem 1rem 0.5rem 3rem;
+    border: none;
+    transition: 0.51s all;
+}
+
+.searchCon input:focus{
+    outline: none;
+    border-radius: 3rem;
+}
+
 @media screen and (max-width: 600px) {
     .navbar{
         justify-content: center;
@@ -108,4 +133,5 @@
         display: none;
     }
 }
+
 

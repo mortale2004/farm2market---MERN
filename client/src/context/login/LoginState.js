@@ -10,7 +10,7 @@ const LoginState = ({children})=>{
 
     const URL = `${process.env.REACT_APP_API_URL}auth/users/getuser`;
     const [loggedIn, setLoggedIn] = useState(false);
-    const [authToken, setAuthToken] = useState(JSON.parse(localStorage.getItem("auth-token")));
+    const [authToken, setAuthToken] = useState();
     const navigator = useNavigate();
     const loc = useLocation();
 

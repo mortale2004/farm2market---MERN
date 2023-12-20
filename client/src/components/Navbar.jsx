@@ -2,10 +2,11 @@ import "./css/Navbar.css";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState, useContext, useRef } from "react";
 import logo from "../utils/images/logo.png"
-import { CircleUserRound, LogOutIcon, Menu, X } from "lucide-react";
+import { CircleUserRound, LogOutIcon, Menu, X, Search} from "lucide-react";
 import LoginContext from "../context/login/LoginContext";
 import ProgressContext from "../context/progressbar/ProgressContext";
 import LoadingBar from "react-top-loading-bar";
+
 
 
 const NavBar = () => {
@@ -65,7 +66,7 @@ const NavBar = () => {
                 <X className="close-ul" onClick={handleCloseClick} />
 
                 <li><Link className={` ${activeLink === "/" ? "active" : ""}`} to="/">मुख्यपृष्ठ</Link></li>
-                <li><Link className={` ${activeLink === "/sale" ? "active" : ""}`} to="/sale">विक्री</Link></li>
+                <li><Link className={` ${activeLink === "/sell" ? "active" : ""}`} to="/sell">विक्री</Link></li>
                 <li><Link className={` ${activeLink === "/buy" ? "active" : ""}`} to="/buy">खरेदी</Link></li>
                 <li><Link className={` ${activeLink === "/contact" ? "active" : ""}`} to="/contact">संपर्क</Link></li>
 
@@ -76,6 +77,11 @@ const NavBar = () => {
             </ul>
 
             <div className="rightNav">
+                <div className="searchCon">
+                    <Search/>
+                    <input type="search" name="search" id="search" placeholder="येथे शोधा..." />
+                </div>
+
                 {l.loggedIn ?
                     <Link to="/logout">
                         <LogOutIcon className="logout" />

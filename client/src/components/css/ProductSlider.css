@@ -4,6 +4,7 @@
     position: relative;
     max-width: 1200px;
     margin: 5rem auto;
+    user-select: none;
 }
 .headingContainer{
     display: flex;
@@ -44,15 +45,15 @@
 }
 .slide{
     min-width: 225px;
-    height: 225px;
-    background-color: var(--bg-color);
+    height: 260px;
+    background-color: white;
     border-radius: 1rem;
     margin: 1rem;
 }
 .slide img{
     height: 60%;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 1rem 1rem 0 0;
 }
 .textCon{
@@ -71,13 +72,17 @@
 .buySell{
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    margin:0.5rem 0;
+    justify-content: space-between;
 }
-.buySell span{
+.buySell .shopButton{
     background-color: brown;
     color: white;
-    padding: 0.5rem 2rem;
-    margin: 0 0 0 1rem;
+    width: 50%;
+    text-align: center;
     cursor: pointer;
+    padding: 0.5rem 0;
+    font-size: 1.4rem;
+}
+.buySell .shopButton svg{
+    height: 1.4rem;
 }

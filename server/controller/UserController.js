@@ -295,6 +295,20 @@ const editAddress = async (req, res) => {
     }
 }
 
+
+const getAddress = async (req, res) => {
+
+    try {
+        const address = await Address.findById(req.params.id);
+
+        return res.status(201).json({ status: "success", result: [address] });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ status: "error", result: ["Internal Server Error!"] })
+    }
+}
+
 const getUser = (req, res)=>{
     res.status(200).json({status:"success", result: ["Authorized"]});
 }
@@ -311,5 +325,6 @@ addAddress,
 deleteAddress, 
 editAddress,
 getAddresses,
-getUser
+getUser,
+getAddress
 };

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {getUser, getAllUsers,  getOneUser, createUser, loginUser, updateUser, deleteUser, addAddress, deleteAddress, editAddress, getAddresses} = require("../controller/UserController");
+const {getAddress,getUser, getAllUsers,  getOneUser, createUser, loginUser, updateUser, deleteUser, addAddress, deleteAddress, editAddress, getAddresses} = require("../controller/UserController");
 const {body} = require("express-validator");
 const {authUser, isItAdmin} = require("../middleware/userMiddleware");
 
@@ -8,7 +8,7 @@ router.post("/getuser", authUser, getUser);
 
 router.get("/", authUser, isItAdmin, getAllUsers);
 
-router.get("/:id", authUser, isItAdmin,  getOneUser);
+router.get("/:id", authUser,  getOneUser);
 
 router.post("/register", [
     body("firstname", ["वैध पहिले नाव प्रविष्ट करा"]).isLength(1),
@@ -47,6 +47,10 @@ router.post("/address", authUser,  [
 ], addAddress);
 
 router.get("/address", authUser, getAddresses);
+
+router.get("/address/:id", authUser, getAddress);
+
+
 
 router.delete("/address/:id", authUser, deleteAddress);
 

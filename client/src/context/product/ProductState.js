@@ -11,6 +11,7 @@ const NotesState = (props)=>{
     const l = useContext(LoginContext);
     const p = useContext(ProgressContext);
     const [products, setProducts] = useState([]);
+    const [product, setProduct] = useState();
 
     const URL = `${process.env.REACT_APP_API_URL}products`;
 
@@ -106,7 +107,7 @@ const NotesState = (props)=>{
  
 
     return (
-        <ProductContext.Provider value={{getProducts, products}}>
+        <ProductContext.Provider value={{getProducts, products, product, setProduct}}>
             {props.children}
         </ProductContext.Provider>
     )

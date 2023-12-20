@@ -9,6 +9,8 @@ import ProgressState from "./context/progressbar/ProgressState";
 import ProductState from "./context/product/ProductState";
 import Register from "./components/Register";
 import LogOut from "./components/LogOut";
+import Sell from "./components/Sell";
+import Product from "./components/Product";
 // import About from "./components/About";
 // import ContactUs from "./components/ContactUs";
 
@@ -22,9 +24,8 @@ const App = () => {
               <NavBar />
               <Routes>
                 <Route exact path="/" element={<Home />} />
-                {/* // <Route exact path="/about" element={<About />} />
-                // <Route exact path="/contactus" element={<ContactUs />  />  */}
-
+                <Route exact path="/product" element={<Product/>}/>
+                <Route exact path="/sell" element={<Sell />} />
                 <Route exact path="/login" element={<Login />} />
                 <Route exact path="/register" element={<Register />} />
                 <Route exact path="/logout" element={<LogOut />} />

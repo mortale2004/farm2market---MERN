@@ -30,8 +30,24 @@ const productSchema = mongoose.Schema({
         type: Array
     },
     rating: {
-        type: Number,
-        postedby: {type: mongoose.Schema.Types.ObjectId, ref: "user"}
+        type: mongoose.Schema.Types.Decimal128,
+        default: 2.5
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user",   
+    },
+    measurement:{
+        type: String,
+        default: "",
+    },
+    from:{
+        type:String,
+        required: true
+    },
+    address:{
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
     }
 });
 
