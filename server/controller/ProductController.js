@@ -2,6 +2,7 @@ const { validationResult } = require("express-validator");
 const { Product } = require("../models/productModel");
 const uploadCloud = require("../utils/cloudinary");
 const fs = require("fs");
+const {User} = require("../models/userModel");
 
 
 
@@ -59,8 +60,23 @@ const createProduct = async (req, res) => {
             fs.unlinkSync(path);
         }
 
+        req.body.userId = req.user.id;
+
+       
+
 
         const product = await Product.create({ ...req.body, images: images });
+
+        let user = await User.findById(req.user.id);
+        
+        console.log(user);
+        
+        user.sell.push(product._id)
+        user = await User.findByIdAndUpdate(req.user.id, user, {new: true});
+
+        console.log(user);
+
+
         return res.status(201).json({ status: "success", result: [product] });
 
     } catch (error) {
@@ -103,7 +119,15 @@ const deleteProduct = async (req, res) => {
             return res.status(404).json({ status: "error", result: ["Product Not Found!"] });
         }
 
+        let user = await User.findById(product.userId);
+        console.log(user);
+
+        user.sell = user.sell.filter(s=> s.toString()!==req.params.id);
+
+        user = await User.findByIdAndUpdate(product.userId, user, {new: true});
+
         await Product.findByIdAndDelete(req.params.id);
+
         return res.status(200).json({ status: "success", result: ["Deleted Successfully..."] });
 
     } catch (error) {

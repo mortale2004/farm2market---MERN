@@ -127,9 +127,8 @@ form textarea {
 }
 
 form .formHeading h1 {
-  margin: 0 0 2rem 1rem;
+  margin: 0 0 2rem 0rem;
   font-size: 2.5rem !important;
-
 }
 
 .passwordDiv {
@@ -154,6 +153,15 @@ form .formHeading h1 {
   width: 100%;
 }
 
+.inputCon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.inputCon input{
+  width: 50%;
+}
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

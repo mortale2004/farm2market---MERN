@@ -11,6 +11,8 @@ import Register from "./components/Register";
 import LogOut from "./components/LogOut";
 import Sell from "./components/Sell";
 import Product from "./components/Product";
+import SellFarmProduct from "./components/SellFarmProduct";
+
 // import About from "./components/About";
 // import ContactUs from "./components/ContactUs";
 
@@ -26,6 +28,7 @@ const App = () => {
                 <Route exact path="/" element={<Home />} />
                 <Route exact path="/product" element={<Product/>}/>
                 <Route exact path="/sell" element={<Sell />} />
+                <Route exact path="/sellfarmproduct" element={<SellFarmProduct />} />
                 <Route exact path="/login" element={<Login />} />
                 <Route exact path="/register" element={<Register />} />
                 <Route exact path="/logout" element={<LogOut />} />

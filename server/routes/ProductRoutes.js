@@ -4,23 +4,23 @@ const {body} = require("express-validator");
 const {getAllProducts,  getOneProduct, createProduct, updateProduct, deleteProduct} = require("../controller/ProductController");
 const {uploadImageFiles} = require("../middleware/imageUploader");
 const {setRequest} = require("../middleware/productMiddleware");
+const {authUser} = require("../middleware/userMiddleware"); 
 
-router.get("/",  getAllProducts);
+router.get("/",   authUser, getAllProducts);
 
-router.get("/:id",  getOneProduct);
+router.get("/:id", authUser,   getOneProduct);
 
-router.post("/", uploadImageFiles, setRequest, [
-    body("title", ["Enter Valid Title"]).isLength(1),
-    body("description", ["Enter Valid Description"]).isLength(1),
-    body("price", ["Enter Valid Price"]).isCurrency(),
+router.post("/", authUser,  uploadImageFiles, setRequest,[
+    body("title", ["वैध नाव प्रविष्ट करा"]).isLength(1),
+    body("description", ["वैध वर्णन प्रविष्ट करा"]).isLength(1),
+    body("price", ["वैध किंमत प्रविष्ट करा"]).isCurrency(),
 ], createProduct);
 
-
-router.put("/:id", 
+router.put("/:id",  authUser, 
 [
-    body("title", ["Enter Valid Title"]).isLength(1),
-    body("description", ["Enter Valid Description"]).isLength(1),
-    body("price", ["Enter Valid Price"]).isCurrency(),
+    body("title", ["वैध नाव प्रविष्ट करा"]).isLength(1),
+    body("description", ["वैध वर्णन प्रविष्ट करा"]).isLength(1),
+    body("price", ["वैध किंमत प्रविष्ट करा"]).isCurrency(),
 ], updateProduct);
 
 router.delete("/:id", deleteProduct);
