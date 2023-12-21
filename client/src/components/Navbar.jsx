@@ -6,7 +6,7 @@ import { CircleUserRound, LogOutIcon, Menu, X, Search} from "lucide-react";
 import LoginContext from "../context/login/LoginContext";
 import ProgressContext from "../context/progressbar/ProgressContext";
 import LoadingBar from "react-top-loading-bar";
-
+import SearchBox from "./SearchBox";
 
 
 const NavBar = () => {
@@ -15,11 +15,13 @@ const NavBar = () => {
     const l = useContext(LoginContext);
     const ulRef = useRef();
 
+
+
     const p = useContext(ProgressContext);
 
     useEffect(() => {
         setActiveLink(location.pathname);
-        if (window.screen.availWidth<600)
+        if (window.screen.availWidth<770)
         {
             ulRef.current.style.transform = "translateX(-100vw)";
         }
@@ -70,16 +72,18 @@ const NavBar = () => {
                 <li><Link className={` ${activeLink === "/buy" ? "active" : ""}`} to="/buy">खरेदी</Link></li>
                 <li><Link className={` ${activeLink === "/contact" ? "active" : ""}`} to="/contact">संपर्क</Link></li>
 
-                {window.screen.availWidth<600 &&(  l.loggedIn ? <li><Link to="/logout" className={` ${activeLink === "/logout" ? "active" : ""}`}>Log Out</Link></li>
+                {window.screen.availWidth<770 &&(  l.loggedIn ? <li><Link to="/logout" className={` ${activeLink === "/logout" ? "active" : ""}`}>Log Out</Link></li>
                     : <>
-                        <li><Link to="/register" className={` ${activeLink === "/register" ? "active" : ""}`}>Register</Link></li>
-                        <li><Link to="/login" className={` ${activeLink === "/login" ? "active" : ""}`}>Login</Link></li></>)}
+                        <li><Link to="/register" className={` ${activeLink === "/register" ? "active" : ""}`}>नोंदणी करा</Link></li>
+                        <li><Link to="/login" className={` ${activeLink === "/login" ? "active" : ""}`}>लॉगिन करा  </Link></li></>)}
             </ul>
+
+            {window.screen.availWidth<770 && <div className="searchCon"><Search/> <SearchBox/></div>}
 
             <div className="rightNav">
                 <div className="searchCon">
-                    <Search/>
-                    <input type="search" name="search" id="search" placeholder="येथे शोधा..." />
+                    <Search/> 
+                    <SearchBox/>
                 </div>
 
                 {l.loggedIn ?

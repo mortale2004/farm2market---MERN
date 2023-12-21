@@ -94,9 +94,23 @@
     border-radius: 3rem;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width:770px) {
     .navbar{
-        justify-content: center;
+        justify-content: space-between;
+        padding: 0.5rem;
+    }
+    .leftNav h1{
+        font-size: 2rem;
+    }
+    .leftNav{
+        margin: 0 0 0 3rem ;
+        width:70%;
+    }
+    .searchCon{
+        width: 30%;
+    }
+    .searchCon input{
+        width: 100%;
     }
     .navbar ul{
         margin: 0;
@@ -119,15 +133,15 @@
         display: block;
         color: var(--primary-color);
         position: absolute;
-        top: 1.8rem;
-        left: 3rem;
+        top: 1.5rem;
+        left: 2rem;
     }
     .menu-btn{
         color: var(--primary-color);
         display: block;
         position: absolute;
-        top: 1.8rem;
-        left: 3rem;
+        top: 1.5rem;
+        left: 2rem;
     }
     .rightNav{
         display: none;

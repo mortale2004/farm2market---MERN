@@ -1,0 +1,23 @@
+.YourSellsMainCon .product-slider{
+    margin: 1rem auto 1rem auto;
+}
+.YourSellsMainCon h1{
+    text-align: center;
+    color: black;
+}
+.categoryBtn{
+    margin: 0 1rem;
+}
+.btnContainer{
+    overflow: scroll;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.activeBtn{
+    background: #333333;
+    color: white;  
+}

@@ -20,7 +20,7 @@ app.use("/api/auth/users", require("./routes/UserRoutes"));
 app.use("/api/products", require("./routes/ProductRoutes"));
 app.use("/api/category", require("./routes/CategoryRoutes"));
 app.use("/api/address", require("./routes/AddressRoutes"));
-
+app.use("/api/contact", require("./routes/ContactRoutes"));
 
 
 app.listen(process.env.PORT, (req, res) => {

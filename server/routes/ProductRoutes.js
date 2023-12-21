@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const {body} = require("express-validator");
-const {getAllProducts,  getOneProduct, createProduct, updateProduct, deleteProduct} = require("../controller/ProductController");
+const {getAllProducts,  getOneProduct, createProduct, updateProduct, deleteProduct, getUserAllProducts} = require("../controller/ProductController");
 const {uploadImageFiles} = require("../middleware/imageUploader");
 const {setRequest} = require("../middleware/productMiddleware");
 const {authUser} = require("../middleware/userMiddleware"); 
@@ -9,6 +9,8 @@ const {authUser} = require("../middleware/userMiddleware");
 router.get("/",   authUser, getAllProducts);
 
 router.get("/:id", authUser,   getOneProduct);
+
+router.get("/user/products", authUser,   getUserAllProducts);
 
 router.post("/", authUser,  uploadImageFiles, setRequest,[
     body("title", ["वैध नाव प्रविष्ट करा"]).isLength(1),

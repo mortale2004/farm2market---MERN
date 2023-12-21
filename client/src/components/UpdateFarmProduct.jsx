@@ -1,25 +1,52 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import AlertContext from "../context/alert/AlertContext";
 import ProgressContext from "../context/progressbar/ProgressContext";
 import ReactStars from "react-stars";
 import "./css/SellFarmProduct.css";
+import ProductContext from "../context/product/ProductContext";
+import { useNavigate } from "react-router-dom";
 
-const SellFarmProduct = () => {
+const UpdateFarmProduct = () => {
     const a = useContext(AlertContext);
     const p = useContext(ProgressContext);
+    const pr = useContext(ProductContext);
 
-    const formData = new FormData();
+    const navigator = useNavigate();
 
-    const [product, setProduct] = useState({ title: "", description: "", price: "", category: "", from: "farmer", quantity: "", sold: 0, measurement: "", userId: "", rating: 0, address: "" });
-    const [address, setAddress] = useState({ place: "", city: "", taluka: "", district: "", pincode: "" })
+    const [product, setProduct] = useState({...pr.product, rating: Number(pr.product.rating.$numberDecimal)});
+    const [address, setAddress] = useState({ place: "", city: "", taluka: "", district: "", pincode: "" });
+
+    const measurementRef = useRef();
+    const categoryRef = useRef();
 
 
-    const storeAddress = async () => {
-
-        const URL = `${process.env.REACT_APP_API_URL}address`;
+    const getAddress = async () => {
+        const URL = `${process.env.REACT_APP_API_URL}address/${product.address}`;
 
         const response = await fetch(URL, {
-            method: "POST",
+            method: "GET",
+            headers: {
+                "auth-token": JSON.parse(localStorage.getItem("auth-token"))
+            },
+        });
+
+        const json = await response.json();
+        setAddress(json.result[0]);
+    }
+
+    useEffect(() => {
+        getAddress();
+        measurementRef.current.selectedIndex = Array.from(measurementRef.current.options).findIndex((op) => op.value === product.measurement);
+        categoryRef.current.selectedIndex = Array.from(categoryRef.current.options).findIndex((op) => op.value === product.category);
+    }, []);
+
+
+    const updateAddress = async () => {
+
+        const URL = `${process.env.REACT_APP_API_URL}address/${product.address}`;
+
+        const response = await fetch(URL, {
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
                 "auth-token": JSON.parse(localStorage.getItem("auth-token"))
@@ -34,7 +61,7 @@ const SellFarmProduct = () => {
         p.setProgress(25);
 
         if (json.status === "success") {
-            a.setAlert({ status: "success", msg: ["पत्ता जोडला."], isDone: false })
+            a.setAlert({ status: "success", msg: ["पत्ता अद्यायावत केला आहे."], isDone: false })
         }
         else {
             a.setAlert({ status: "danger", msg: json.result, isDone: false })
@@ -55,76 +82,40 @@ const SellFarmProduct = () => {
 
         e.preventDefault();
 
-        const addressId = await storeAddress();
+        await updateAddress();
 
-        Array.from(document.getElementsByName("image")).forEach(fileInp => {
-            if (fileInp.files.length !== 0) {
-                formData.append("image", fileInp.files[0]);
-            }
-        })
-
-        formData.append("title", product.title);
-        formData.append("description", product.description);
-        formData.append("price", product.price);
-        formData.append("category", product.category);
-        formData.append("from", product.from);
-        formData.append("quantity", product.quantity);
-        formData.append("sold", product.sold);
-        formData.append("measurement", product.measurement);
-        formData.append("rating", product.rating);
-        formData.append("address", addressId);
-
-
-        const URL = `${process.env.REACT_APP_API_URL}products`;
+        const URL = `${process.env.REACT_APP_API_URL}products/${product._id}`;
 
         p.setProgress(40);
 
         try {
 
             const response = await fetch(URL, {
-                method: "POST",
+                method: "PUT",
                 headers: {
+                    "Content-Type": "application/json",
                     "auth-token": JSON.parse(localStorage.getItem("auth-token"))
                 },
-                body: formData
+                body: JSON.stringify(product)
             });
 
 
             p.setProgress(65);
 
-            if (response.status === 500) {
-                a.setAlert({ status: "danger", msg: ["कृपया लहान आकाराच्या प्रतिमा अपलोड करा"], isDone: false });
-                return;
-            }
-
             const json = await response.json();
 
             if (json.status === "success") {
-                a.setAlert({ status: "success", msg: ["यशस्वीरित्या शेतमाल जोडला"], isDone: false })
-                setProduct({ title: "", description: "", price: "", category: "", from: "farmer", quantity: "", sold: 0, measurement: "", userId: "", rating: 0, address: "" });
-                setAddress({ place: "", city: "", taluka: "", district: "", pincode: "" });
-                Array.from(document.getElementById("imgCon").getElementsByTagName("img")).forEach(img => img.src = "");
-                const selects = Array.from(document.getElementsByClassName("select"));
-                selects.forEach(select => select.selectedIndex = 0);
-                Array.from(document.getElementsByClassName("fileInput")).forEach(file => file.value = null);
+                a.setAlert({ status: "success", msg: ["शेतमालाचे यशस्वीरित्या अद्यतनित झाले..."], isDone: false })
+                navigator("/yoursells");
             }
             else {
                 a.setAlert({ status: "danger", msg: json.result, isDone: false })
-                const URL = `${process.env.REACT_APP_API_URL}address/${addressId}`;
-                await fetch(URL, {
-                    method: "DELETE",
-                    headers: {
-                        "auth-token": JSON.parse(localStorage.getItem("auth-token"))
-                    },
-                });
             }
 
         } catch (error) {
             console.log(error);
         }
         p.setProgress(100);
-
-
     }
 
 
@@ -135,8 +126,6 @@ const SellFarmProduct = () => {
     const handleChangeAdd = (e) => {
         setAddress({ ...address, [e.currentTarget.name]: e.currentTarget.value })
     }
-
-
 
     const handleSelectChange = (e) => {
         setProduct({ ...product, [e.currentTarget.name]: e.currentTarget.options[e.currentTarget.selectedIndex].value })
@@ -151,7 +140,7 @@ const SellFarmProduct = () => {
             {a.showAlert()}
             <form onSubmit={handleSubmit}>
                 <div className="formHeading">
-                    <h1>शेतमाल जोडणी फॉर्म</h1>
+                    <h1>शेतमाल अद्यतन फॉर्म</h1>
                 </div>
 
                 <h2>शेतमालाची माहिती :</h2>
@@ -161,14 +150,14 @@ const SellFarmProduct = () => {
                 <div className="inputCon">
 
                     <input required onChange={handleChange} value={product.quantity} type="number" name="quantity" id="quantity" placeholder="मालाचे प्रमाण भरा" />
-                    <select name="measurement" required={true} onChange={handleSelectChange} className="select" >
+                    <select name="measurement" required={true} onChange={handleSelectChange} className="select" ref={measurementRef}>
                         <option value="">मालाचा माप निवडा? </option>
                         <option value="किलो">किलो</option>
                         <option value="नग">नग</option>
                     </select>
                 </div>
 
-                <select name="category" required={true} onChange={handleSelectChange} className="select">
+                <select name="category" required={true} onChange={handleSelectChange} className="select" ref={categoryRef}>
                     <option value="">मालाचा प्रकार निवडा? </option>
                     <option value="फळे">फळे</option>
                     <option value="भाज्या">भाज्या</option>
@@ -200,27 +189,11 @@ const SellFarmProduct = () => {
                 <input required onChange={handleChangeAdd} value={address.district} type="text" name="district" id="district" placeholder="जिल्हा भरा" />
                 <input required onChange={handleChangeAdd} value={address.pincode} type="number" name="pincode" id="pincode" placeholder="पिन कोड भरा" />
 
-                <br />
-                <br />
-                <h2>प्रतिमा अपलोड करा:</h2>
-
-                <div className="inputCon">
-                    <input onChange={(e) => document.getElementById("imgMain").src = URL.createObjectURL(e.currentTarget.files[0])} required type="file" name="image" accept="image/*" className="fileInput" />
-                    <input onChange={(e) => document.getElementById("secImg").src = URL.createObjectURL(e.currentTarget.files[0])} required type="file" name="image" accept="image/*" className="fileInput" />
-                    <input onChange={(e) => document.getElementById("optImg").src = URL.createObjectURL(e.currentTarget.files[0])} type="file" name="image" accept="image/*" className="fileInput" />
-                </div>
-
-                <div id="imgCon">
-                    <img src="" alt="मुख्य प्रतिमा" id="imgMain" />
-                    <img src="" alt="दुसरी प्रतिमा" id="secImg" />
-                    <img src="" alt="पर्यायी प्रतिमा" id="optImg" />
-                </div>
-
-                <button>शेतमाल जोडा</button>
+                <button>शेतमाल अद्यतन करा</button>
             </form>
         </main>
     )
 
 }
 
-export default SellFarmProduct
+export default UpdateFarmProduct

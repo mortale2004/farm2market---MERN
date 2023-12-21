@@ -35,3 +35,6 @@
 .industry{
     background-image: linear-gradient(rgba(0, 0, 0, 0.444), rgba(0, 0, 0, 0.416)), url("../../utils/images/industry.jpg");
 }
+.sell{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.444), rgba(0, 0, 0, 0.416)), url("../../utils/images/sell.png");
+}

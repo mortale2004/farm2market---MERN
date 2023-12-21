@@ -1,0 +1,49 @@
+.confirmCon{
+    width: 100vw;
+    height: 100%;
+    background-color: black;
+    position: fixed;
+    z-index: 77;
+
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.confirmDiv{
+    width: 40rem;
+    height: 20rem;
+    background-color: var(--bg-color);
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.confirmDiv h1{
+    margin: 5rem 0 0 0;
+    color: black;
+}
+.confirmDiv .buttonContainer{
+    margin: 3rem 0 0 0;
+}
+
+
+.confirmDiv .cancelBtn{
+    color: hsl(120, 50%, 70%);
+    background-color: hsl(120, 100%, 15%);
+    margin: 0 2rem 0 0;
+}
+.confirmDiv .cancelBtn:hover{
+    box-shadow: 0 0 10px hsl(120, 100%, 15%);
+}
+.confirmDiv .deleteBtn{
+    color: hsl(0, 50%, 70%);
+    background-color: hsl(0, 100%, 15%);
+}
+.confirmDiv .deleteBtn:hover{
+    box-shadow: 0 0 10px hsl(0, 100%, 15%);
+}

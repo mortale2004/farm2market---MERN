@@ -1,0 +1,12 @@
+#imgCon{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    background-color: white;
+}
+#imgCon img{
+    width: 33%;
+    height: 33%;
+    object-fit: contain;
+}

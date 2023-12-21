@@ -17,7 +17,6 @@ const Register = () => {
   const navigator = useNavigate();
 
   const handleSubmit = async (e) => {
-    console.log(user);
     e.preventDefault();
     p.setProgress(30);
     if (user.password === user.cpassword) {
@@ -32,7 +31,6 @@ const Register = () => {
       p.setProgress(65);
 
       const json = await response.json();
-      console.log(json);
 
       p.setProgress(100);
 

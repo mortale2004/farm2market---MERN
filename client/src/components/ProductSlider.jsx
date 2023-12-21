@@ -22,6 +22,10 @@ const ProductSlider = ({ title, items }) => {
     }
 
     const handleClick = (e, item) => {
+        window.scroll({
+            top: 0,
+            behavior: "smooth"
+        })
         pr.setProduct(item);
         navigator("/product");
     }

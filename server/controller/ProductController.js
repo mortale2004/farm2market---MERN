@@ -3,14 +3,26 @@ const { Product } = require("../models/productModel");
 const uploadCloud = require("../utils/cloudinary");
 const fs = require("fs");
 const {User} = require("../models/userModel");
+const {Address} = require("../models/addressModel");
 
 
 
 const getAllProducts = async (req, res) => {
     try {
         const products = await Product.find();
-        return res.status(201).json({ status: "success", result: products });
+        return res.status(200).json({ status: "success", result: products });
 
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ status: "error", result: ["Internal Server Error!"] })
+    }
+}
+
+const getUserAllProducts = async (req, res) => {
+
+    try {
+        const products = await Product.find({userId: req.user.id});
+        return res.status(200).json({ status: "success", result: products });
     } catch (error) {
         console.log(error);
         return res.status(500).json({ status: "error", result: ["Internal Server Error!"] })
@@ -117,6 +129,8 @@ const deleteProduct = async (req, res) => {
 
         user = await User.findByIdAndUpdate(product.userId, user, {new: true});
 
+        const address = await Address.findByIdAndDelete(product.address);
+
         await Product.findByIdAndDelete(req.params.id);
 
         return res.status(200).json({ status: "success", result: ["Deleted Successfully..."] });
@@ -127,4 +141,4 @@ const deleteProduct = async (req, res) => {
     }
 }
 
-module.exports = { getAllProducts, getOneProduct, createProduct, updateProduct, deleteProduct };
+module.exports = { getAllProducts, getOneProduct, createProduct, updateProduct, deleteProduct, getUserAllProducts };

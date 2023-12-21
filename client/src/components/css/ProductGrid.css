@@ -1,0 +1,44 @@
+.gridContainer{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
+    padding: 0 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: center;
+}
+.buySell > div{
+    width: 50%;
+}
+.gridContainer .editBtn, .gridContainer .trashBtn {
+    width: 3.5rem;
+    border-radius: 1rem;
+    height: 3.5rem;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    transition: 0.5s all;
+}
+.gridContainer .textCon h4{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.buySell .editBtn{
+    color: hsl(120, 50%, 70%);
+    background-color: hsl(120, 100%, 15%);
+}
+.buySell .editBtn:hover{
+    box-shadow: 0 0 10px hsl(120, 100%, 15%);
+}
+.buySell .trashBtn{
+    color: hsl(0, 50%, 70%);
+    background-color: hsl(0, 100%, 15%);
+}
+.buySell .trashBtn:hover{
+    box-shadow: 0 0 10px hsl(0, 100%, 15%);
+}
+
+@media screen and (max-width: 650px) {
+    .gridContainer{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
