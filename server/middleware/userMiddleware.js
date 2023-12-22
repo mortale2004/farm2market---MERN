@@ -7,7 +7,7 @@ const authUser = (req, res, next)=>{
 
     if (!authToken)
     {
-        return res.status(401).json({status: "error", result: ["Unauthorized User!"]});
+        return res.status(401).json({status: "error", result: ["अनधिकृत वापरकर्ता!"]});
     }
 
     try {
@@ -22,24 +22,22 @@ const authUser = (req, res, next)=>{
         
     } catch (error) {
         console.log(error);
-        return res.status(401).json({status: "error", result: ["Unauthorized User!"]});
+        return res.status(401).json({status: "error", result: ["अनधिकृत वापरकर्ता!"]});
     }
 }
 
 const isItAdmin = async (req, res, next) =>{
 
-    console.log("hisdfjsdifjdsifdsji");
-    
     const user = await User.findById(req.user.id);
 
     if (!user)
     {
-        return res.status(401).json({status: "error", result:["User Not Found!"]})
+        return res.status(401).json({status: "error", result:["वापरकर्ता सापडला नाही!"]})
     }
 
     if (!user.isAdmin)
     {
-        return res.status(401).json({status: "error", result:["You Are Not An Admin!"]})
+        return res.status(401).json({status: "error", result:["तुम्ही अ‍ॅडमिन नाही!"]})
     }
     
     next();

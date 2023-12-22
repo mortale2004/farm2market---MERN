@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import ProductContext from "../context/product/ProductContext";
 const SearchBox = ()=> {
 
@@ -20,6 +20,7 @@ const SearchBox = ()=> {
       }, 1500)
   
       return () => clearTimeout(id)
+      // eslint-disable-next-line
     }, [pr.query])
   
     return (

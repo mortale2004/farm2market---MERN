@@ -15,7 +15,7 @@ const getAllProducts = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ status: "error", result: ["Internal Server Error!"] })
+        return res.status(500).json({ status: "error", result: ["अंतर्गत सर्व्हर त्रुटी!"] })
     }
 }
 
@@ -26,7 +26,7 @@ const getUserAllProducts = async (req, res) => {
         return res.status(200).json({ status: "success", result: products });
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ status: "error", result: ["Internal Server Error!"] })
+        return res.status(500).json({ status: "error", result: ["अंतर्गत सर्व्हर त्रुटी!"] })
     }
 }
 
@@ -35,14 +35,14 @@ const getOneProduct = async (req, res) => {
         const product = await Product.findById(req.params.id);
 
         if (!product) {
-            return res.status(404).json({ status: "error", result: ["Product Not Found!"] });
+            return res.status(404).json({ status: "error", result: ["उत्पादन आढळले नाही!"] });
         }
 
         return res.status(201).json({ status: "success", result: [product] });
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ status: "error", result: ["Internal Server Error!"] })
+        return res.status(500).json({ status: "error", result: ["अंतर्गत सर्व्हर त्रुटी!"] })
     }
 }
 
@@ -87,7 +87,7 @@ const createProduct = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ status: "error", result: ["Internal Server Error!"] })
+        return res.status(500).json({ status: "error", result: ["अंतर्गत सर्व्हर त्रुटी!"] })
     }
 }
 
@@ -102,7 +102,7 @@ const updateProduct = async (req, res) => {
         let product = await Product.findById(req.params.id);
 
         if (!product) {
-            return res.status(404).json({ status: "error", result: ["Product Not Found!"] });
+            return res.status(404).json({ status: "error", result: ["उत्पादन आढळले नाही!"] });
         }
 
         product = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -111,7 +111,7 @@ const updateProduct = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ status: "error", result: ["Internal Server Error!"] })
+        return res.status(500).json({ status: "error", result: ["अंतर्गत सर्व्हर त्रुटी!"] })
     }
 }
 
@@ -122,7 +122,7 @@ const deleteProduct = async (req, res) => {
         const product = await Product.findById(req.params.id);
 
         if (!product) {
-            return res.status(404).json({ status: "error", result: ["Product Not Found!"] });
+            return res.status(404).json({ status: "error", result: ["उत्पादन आढळले नाही!"] });
         }
 
         let user = await User.findById(product.userId);
@@ -135,11 +135,11 @@ const deleteProduct = async (req, res) => {
 
         await Product.findByIdAndDelete(req.params.id);
 
-        return res.status(200).json({ status: "success", result: ["Deleted Successfully..."] });
+        return res.status(200).json({ status: "success", result: ["यशस्वीरित्या हटवले..."] });
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ status: "error", result: ["Internal Server Error!"] })
+        return res.status(500).json({ status: "error", result: ["अंतर्गत सर्व्हर त्रुटी!"] })
     }
 }
 

@@ -1,6 +1,6 @@
 import "./css/ProductGrid.css";
 import { Trash, Edit, ShoppingCart } from "lucide-react";
-import { useContext, useRef } from "react";
+import { useContext} from "react";
 import ProductContext from "../context/product/ProductContext";
 import { useNavigate } from "react-router-dom";
 import ReactStars from 'react-stars';

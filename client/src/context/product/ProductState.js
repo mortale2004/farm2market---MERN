@@ -1,15 +1,11 @@
 import ProductContext from "./ProductContext";
-import AlertContext from "../alert/AlertContext";
 import LoginContext from "../login/LoginContext";
-import ProgressContext from "../progressbar/ProgressContext";
 import { useEffect, useState, useContext } from "react";
 
 
 const NotesState = (props)=>{
 
-    const a = useContext(AlertContext);
     const l = useContext(LoginContext);
-    const p = useContext(ProgressContext);
 
     const [query, setQuery] = useState('')
     const [products, setProducts] = useState([]);

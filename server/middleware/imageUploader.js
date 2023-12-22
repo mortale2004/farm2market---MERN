@@ -17,7 +17,7 @@ const multerFilter = (req, file, cb)=>{
     }
     else
     {
-        cb({message: "Unsupported Files",}, false);
+        cb({message: "असमर्थित फायली",}, false);
     }
 }
 

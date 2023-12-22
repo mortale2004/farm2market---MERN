@@ -13,7 +13,7 @@ const getAllUsers = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ status: "error", result: ["Internal Server Error!"] })
+        return res.status(500).json({ status: "error", result: ["अंतर्गत सर्व्हर त्रुटी!"] })
     }
 }
 
@@ -24,14 +24,14 @@ const getOneUser = async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
         if (!user) {
-            return res.status(404).json({ status: "error", result: ["User Not Found!"] });
+            return res.status(404).json({ status: "error", result: ["वापरकर्ता सापडला नाही!"] });
         }
 
         return res.status(200).json({ status: "success", result: user });
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ status: "error", result: ["Internal Server Error!"] })
+        return res.status(500).json({ status: "error", result: ["अंतर्गत सर्व्हर त्रुटी!"] })
     }
 }
 
@@ -48,13 +48,13 @@ const createUser = async (req, res) => {
         let user = await User.findOne({ email: req.body.email });
 
         if (user) {
-            return res.status(400).json({ status: "error", result: ["Choose Another Email"] });
+            return res.status(400).json({ status: "error", result: ["दुसरा ईमेल निवडा!"] });
         }
 
         user = await User.findOne({ mobile: req.body.mobile });
 
         if (user) {
-            return res.status(400).json({ status: "error", result: ["Choose Another Mobile Number"] });
+            return res.status(400).json({ status: "error", result: ["दुसरा मोबाईल नंबर निवडा!"] });
         }
 
         const salt = await bcrypt.genSalt(10);
@@ -66,7 +66,7 @@ const createUser = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ status: "error", result: ["Internal Server Error!"] })
+        return res.status(500).json({ status: "error", result: ["अंतर्गत सर्व्हर त्रुटी!"] })
     }
 };
 
@@ -81,13 +81,13 @@ const loginUser = async (req, res) => {
         const user = await User.findOne({ email: req.body.email });
 
         if (!user) {
-            return res.status(401).json({ status: "error", result: ["Please Enter Correct Email/Password"] });
+            return res.status(401).json({ status: "error", result: ["कृपया योग्य ईमेल/पासवर्ड टाका"] });
         }
 
         const isPasswordMatches = await bcrypt.compare(req.body.password, user.password);
 
         if (!isPasswordMatches) {
-            return res.status(401).json({ status: "error", result: ["Please Enter Correct Email/Password"] });
+            return res.status(401).json({ status: "error", result: ["कृपया योग्य ईमेल/पासवर्ड टाका"] });
         }
 
         const authToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
@@ -96,7 +96,7 @@ const loginUser = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ status: "error", result: ["Internal Server Error!"] })
+        return res.status(500).json({ status: "error", result: ["अंतर्गत सर्व्हर त्रुटी!"] })
     }
 }
 
@@ -113,24 +113,24 @@ const updateUser = async (req, res) => {
         let user = await User.findById(req.user.id);
 
         if (!user) {
-            return res.status(404).json({ status: "error", result: ["User Not Found!"] });
+            return res.status(404).json({ status: "error", result: ["वापरकर्ता सापडला नाही!"] });
         }
 
         if (req.user.id !== user._id.toString()) {
-            return res.status(401).json({ status: "error", result: ["Unauthorized"] });
+            return res.status(401).json({ status: "error", result: ["अनाधिकृत!"] });
         }
 
 
         user = await User.findOne({ email: req.body.email });
 
         if (user) {
-            return res.status(400).json({ status: "error", result: ["Choose Another Email"] });
+            return res.status(400).json({ status: "error", result: ["दुसरा ईमेल निवडा!"] });
         }
 
         user = await User.findOne({ mobile: req.body.mobile });
 
         if (user) {
-            return res.status(400).json({ status: "error", result: ["Choose Another Mobile Number"] });
+            return res.status(400).json({ status: "error", result: ["दुसरा मोबाईल नंबर निवडा!"] });
         }
 
         user = await User.findByIdAndUpdate(req.user.id, req.body, { new: true });
@@ -138,7 +138,7 @@ const updateUser = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ status: "error", result: ["Internal Server Error!"] })
+        return res.status(500).json({ status: "error", result: ["अंतर्गत सर्व्हर त्रुटी!"] })
     }
 
 }
@@ -150,15 +150,15 @@ const deleteUser = async (req, res) => {
         let user = await User.findById(req.user.id);
 
         if (!user) {
-            return res.status(404).json({ status: "error", result: ["User Not Found!"] });
+            return res.status(404).json({ status: "error", result: ["वापरकर्ता सापडला नाही!"] });
         }
 
         await User.findByIdAndDelete(req.user.id);
-        return res.status(200).json({ status: "success", result: ["Deleted Successfully..."] });
+        return res.status(200).json({ status: "success", result: ["यशस्वीरित्या हटवले..."] });
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ status: "error", result: ["Internal Server Error!"] })
+        return res.status(500).json({ status: "error", result: ["अंतर्गत सर्व्हर त्रुटी!"] })
     }
 }
 
@@ -172,7 +172,7 @@ const getAddresses = async (req, res) => {
         let user = await User.findById(req.user.id);
 
         if (!user) {
-            return res.status(404).json({ status: "error", result: ["User Not Found"] });
+            return res.status(404).json({ status: "error", result: ["वापरकर्ता सापडला नाही"] });
         }
 
         const addresses = [];
@@ -186,7 +186,7 @@ const getAddresses = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ status: "error", result: ["Internal Server Error!"] })
+        return res.status(500).json({ status: "error", result: ["अंतर्गत सर्व्हर त्रुटी!"] })
     }
 }
 
@@ -204,7 +204,7 @@ const addAddress = async (req, res) => {
         let user = await User.findById(req.user.id);
 
         if (!user) {
-            return res.status(404).json({ status: "error", result: ["User Not Found"] });
+            return res.status(404).json({ status: "error", result: ["वापरकर्ता सापडला नाही"] });
         }
 
         const address = await Address.create(req.body);
@@ -215,7 +215,7 @@ const addAddress = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ status: "error", result: ["Internal Server Error!"] })
+        return res.status(500).json({ status: "error", result: ["अंतर्गत सर्व्हर त्रुटी!"] })
     }
 }
 
@@ -228,7 +228,7 @@ const deleteAddress = async (req, res) => {
         let user = await User.findById(req.user.id);
         if (!user)
         {
-            return res.status(404).json({ status: "error", result: ["User Not Found!"] });
+            return res.status(404).json({ status: "error", result: ["वापरकर्ता सापडला नाही!"] });
         }
 
 
@@ -237,7 +237,7 @@ const deleteAddress = async (req, res) => {
         
         if (!address)
         {
-            return res.status(404).json({ status: "error", result: ["Address Not Found!"] });
+            return res.status(404).json({ status: "error", result: ["पत्ता सापडला नाही!"] });
         }
         
         await Address.findByIdAndDelete(req.params.id);
@@ -246,11 +246,11 @@ const deleteAddress = async (req, res) => {
 
         user = await User.findByIdAndUpdate(req.user.id, user, {new: true})
 
-        return res.status(200).json({ status: "success", result: ["Deleted Successfully..."] });
+        return res.status(200).json({ status: "success", result: ["यशस्वीरित्या हटवले..."] });
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ status: "error", result: ["Internal Server Error!"] })
+        return res.status(500).json({ status: "error", result: ["अंतर्गत सर्व्हर त्रुटी!"] })
     }
 }
 
@@ -267,7 +267,7 @@ const editAddress = async (req, res) => {
         
         if (!user)
         {
-            return res.status(404).json({ status: "error", result: ["User Not Found!"] });
+            return res.status(404).json({ status: "error", result: ["वापरकर्ता सापडला नाही!"] });
         }
 
 
@@ -276,7 +276,7 @@ const editAddress = async (req, res) => {
 
         if (!address)
         {   
-            return res.status(404).json({ status: "error", result: ["Address Not Found!"] });
+            return res.status(404).json({ status: "error", result: ["पत्ता सापडला नाही!"] });
         }
 
         const {place, city, taluka, district, pincode} = req.body;
@@ -291,7 +291,7 @@ const editAddress = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ status: "error", result: ["Internal Server Error!"] })
+        return res.status(500).json({ status: "error", result: ["अंतर्गत सर्व्हर त्रुटी!"] })
     }
 }
 
@@ -305,12 +305,12 @@ const getAddress = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ status: "error", result: ["Internal Server Error!"] })
+        return res.status(500).json({ status: "error", result: ["अंतर्गत सर्व्हर त्रुटी!"] })
     }
 }
 
 const getUser = (req, res)=>{
-    res.status(200).json({status:"success", result: ["Authorized"]});
+    res.status(200).json({status:"success", result: ["अधिकृत"]});
 }
 
 

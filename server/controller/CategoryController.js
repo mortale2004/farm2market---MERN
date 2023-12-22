@@ -8,7 +8,7 @@ const getAllCategories = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({status: "error", result:["Internal Server Error!"]})
+        return res.status(500).json({status: "error", result:["अंतर्गत सर्व्हर त्रुटी!"]})
     }
 }
 
@@ -18,14 +18,14 @@ const getOneCategory = async (req, res) => {
 
         if (!category)
         {
-            return res.status(404).json({status: "error", result:["Category Not Found!"]}); 
+            return res.status(404).json({status: "error", result:["श्रेणी आढळली नाही!"]}); 
         }
 
         return res.status(201).json({status: "success", result:[category]});  
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({status: "error", result:["Internal Server Error!"]})
+        return res.status(500).json({status: "error", result:["अंतर्गत सर्व्हर त्रुटी!"]})
     }
 }
 
@@ -43,7 +43,7 @@ const createCategory = async (req, res) => {
         
         if (category)
         {
-            return res.status(400).json({status: "error", result:["Choose Another Title"]});
+            return res.status(400).json({status: "error", result:["दुसरे शीर्षक निवडा!"]});
         }
 
         category = await Category.create(req.body);  
@@ -51,7 +51,7 @@ const createCategory = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({status: "error", result:["Internal Server Error!"]})
+        return res.status(500).json({status: "error", result:["अंतर्गत सर्व्हर त्रुटी!"]})
     }
 }
 
@@ -68,14 +68,14 @@ const updateCategory = async (req, res) => {
 
         if (!category)
         {
-            return res.status(404).json({status: "error", result:["Category Not Found!"]});
+            return res.status(404).json({status: "error", result:["श्रेणी आढळली नाही!"]});
         }
 
         category = await Category.findOne({title: req.body.title});
         
         if (category)
         {
-            return res.status(400).json({status: "error", result:["Choose Another Title"]});
+            return res.status(400).json({status: "error", result:["दुसरे शीर्षक निवडा!"]});
         }
 
         category = await Category.findByIdAndUpdate(req.params.id, req.body, {new: true});  
@@ -84,7 +84,7 @@ const updateCategory = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({status: "error", result:["Internal Server Error!"]})
+        return res.status(500).json({status: "error", result:["अंतर्गत सर्व्हर त्रुटी!"]})
     }
 }
 
@@ -95,15 +95,15 @@ const deleteCategory = async (req, res) => {
 
         if (!category)
         {
-            return res.status(404).json({status: "error", result:["Category Not Found!"]});
+            return res.status(404).json({status: "error", result:["श्रेणी आढळली नाही!"]});
         }
 
         await Category.findByIdAndDelete(req.params.id);  
-        return res.status(200).json({status: "success", result:["Deleted Successfully..."]});  
+        return res.status(200).json({status: "success", result:["यशस्वीरित्या हटवले..."]});  
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({status: "error", result:["Internal Server Error!"]})
+        return res.status(500).json({status: "error", result:["अंतर्गत सर्व्हर त्रुटी!"]})
     }
 }
 

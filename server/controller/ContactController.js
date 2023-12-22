@@ -14,7 +14,7 @@ const addMessage = async (req, res) =>{
 
     } catch (error) {
         console.log(error);
-        return res.status(500).json({status: "error", result:["Internal Server Error!"]})
+        return res.status(500).json({status: "error", result:["अंतर्गत सर्व्हर त्रुटी!"]})
     }
 }
 
