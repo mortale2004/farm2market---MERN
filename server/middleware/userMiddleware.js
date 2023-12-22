@@ -7,7 +7,7 @@ const authUser = (req, res, next)=>{
 
     if (!authToken)
     {
-        return res.status(401).json({status: "error", result: ["अनधिकृत वापरकर्ता!"]});
+        return res.status(401).json({status: "error", result: ["अनधिकृत वापरकर्ता! hdsfjsfjskj"]});
     }
 
     try {

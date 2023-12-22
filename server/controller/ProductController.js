@@ -52,7 +52,6 @@ const createProduct = async (req, res) => {
     const images = [];
     const files = req.files;
 
-
     if (!validationResult(req).isEmpty()) {
 
         for (const file of files) {
@@ -72,13 +71,14 @@ const createProduct = async (req, res) => {
             images.push(result.url);
             fs.unlinkSync(path);
         }
-
         
         req.body.userId = req.user.id;
 
         const product = await Product.create({ ...req.body, images: images , address: new mongoose.mongo.ObjectId(req.body.address)});
 
+
         let user = await User.findById(req.user.id);
+
         
         user.sell.push(product._id)
         user = await User.findByIdAndUpdate(req.user.id, user, {new: true});

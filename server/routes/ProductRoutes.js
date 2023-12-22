@@ -12,7 +12,7 @@ router.get("/:id", authUser,   getOneProduct);
 
 router.get("/user/products", authUser,   getUserAllProducts);
 
-router.post("/", authUser,  uploadImageFiles, setRequest,[
+router.post("/",  uploadImageFiles, authUser, setRequest,[
     body("title", ["वैध नाव प्रविष्ट करा"]).isLength(1),
     body("description", ["वैध वर्णन प्रविष्ट करा"]).isLength(1),
     body("price", ["वैध किंमत प्रविष्ट करा"]).isCurrency(),

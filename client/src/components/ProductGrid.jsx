@@ -4,12 +4,14 @@ import { useContext} from "react";
 import ProductContext from "../context/product/ProductContext";
 import { useNavigate } from "react-router-dom";
 import ReactStars from 'react-stars';
+import ProgressContext from "../context/progressbar/ProgressContext";
 
 
 
 const ProductGrid = ({setConfirm, title, items, isBuy }) => {
 
     const pr = useContext(ProductContext);
+    const p = useContext(ProgressContext);
     const navigator = useNavigate();
 
 
@@ -24,7 +26,7 @@ const ProductGrid = ({setConfirm, title, items, isBuy }) => {
     }
 
     const handleEditClick = async (e)=>{
-
+        p.setProgress(30);
         const URL = `${process.env.REACT_APP_API_URL}products/${e.currentTarget.parentElement.id}`;
         const response = await fetch(URL, {
             method: "GET",
@@ -32,6 +34,7 @@ const ProductGrid = ({setConfirm, title, items, isBuy }) => {
                 "auth-token": JSON.parse(localStorage.getItem("auth-token")),
             }
         });
+        p.setProgress(80);
         const json = await response.json();
         if (json.result[0].from==="industry")
         {
@@ -44,6 +47,7 @@ const ProductGrid = ({setConfirm, title, items, isBuy }) => {
             pr.setProduct(json.result[0]);
             navigator("/updatefarmproduct");
         }
+        p.setProgress(100);
     }
 
     return (
