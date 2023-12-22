@@ -1,7 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import AlertContext from "../context/alert/AlertContext";
 import LoginContext from "../context/login/LoginContext";
-import ProgressContext from "../context/progressbar/ProgressContext";
 import ProductContext from "../context/product/ProductContext";
 import ProductGrid from "./ProductGrid";
 
@@ -9,7 +8,6 @@ const Buy = () => {
 
   const a = useContext(AlertContext);
   const l = useContext(LoginContext);
-  const p = useContext(ProgressContext);
   const pr = useContext(ProductContext);
 
   const [categories, setCategories] = useState([]);

@@ -72,7 +72,7 @@ const NavBar = () => {
                 <li><Link className={` ${activeLink === "/buy" ? "active" : ""}`} to="/buy">खरेदी</Link></li>
                 <li><Link className={` ${activeLink === "/contact" ? "active" : ""}`} to="/contact">संपर्क</Link></li>
 
-                {window.screen.availWidth<770 &&(  l.loggedIn ? <li><Link to="/logout" className={` ${activeLink === "/logout" ? "active" : ""}`}>Log Out</Link></li>
+                {window.screen.availWidth<770 &&(  l.loggedIn ? <li><Link to="/logout" className={` ${activeLink === "/logout" ? "active" : ""}`}>लॉग आउट करा</Link></li>
                     : <>
                         <li><Link to="/register" className={` ${activeLink === "/register" ? "active" : ""}`}>नोंदणी करा</Link></li>
                         <li><Link to="/login" className={` ${activeLink === "/login" ? "active" : ""}`}>लॉगिन करा  </Link></li></>)}

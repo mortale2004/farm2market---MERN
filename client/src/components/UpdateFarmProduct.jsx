@@ -5,15 +5,23 @@ import ReactStars from "react-stars";
 import "./css/SellFarmProduct.css";
 import ProductContext from "../context/product/ProductContext";
 import { useNavigate } from "react-router-dom";
+import LoginContext from "../context/login/LoginContext";
 
 const UpdateFarmProduct = () => {
     const a = useContext(AlertContext);
     const p = useContext(ProgressContext);
     const pr = useContext(ProductContext);
+    const l = useContext(LoginContext);
+
+    useEffect(() => {
+        l.checkUser();
+        // eslint-disable-next-line
+    }, [l.authToken])
+
 
     const navigator = useNavigate();
 
-    const [product, setProduct] = useState({...pr.product, rating: Number(pr.product.rating.$numberDecimal)});
+    const [product, setProduct] = useState({ ...pr.product, rating: Number(pr.product.rating.$numberDecimal) });
     const [address, setAddress] = useState({ place: "", city: "", taluka: "", district: "", pincode: "" });
 
     const measurementRef = useRef();
@@ -38,6 +46,7 @@ const UpdateFarmProduct = () => {
         getAddress();
         measurementRef.current.selectedIndex = Array.from(measurementRef.current.options).findIndex((op) => op.value === product.measurement);
         categoryRef.current.selectedIndex = Array.from(categoryRef.current.options).findIndex((op) => op.value === product.category);
+        // eslint-disable-next-line
     }, []);
 
 

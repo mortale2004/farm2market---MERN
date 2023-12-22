@@ -31,6 +31,7 @@ const App = () => {
             <ProductState>
               <NavBar />
               <Routes>
+                
                 <Route exact path="/" element={<Home />} />
                 <Route exact path="/product" element={<Product/>}/>
                 <Route exact path="/sell" element={<Sell />} />
@@ -38,19 +39,17 @@ const App = () => {
                 <Route exact path="/buy" element={<Buy />} />
                 <Route exact path="/sellfarmproduct" element={<SellFarmProduct />} />
                 <Route exact path="/sellprocessedproduct" element={<SellProcessedProduct />} />
-
                 <Route exact path="/updatefarmproduct" element={<UpdateFarmProduct />} />
                 <Route exact path="/updateprocessedproduct" element={<UpdateProcessedProduct />} />
-
                 <Route exact path="/searchproduct" element={<SearchProduct />} />
 
 
 
                 <Route exact path="/contact" element={<Contact />} />
-
                 <Route exact path="/login" element={<Login />} />
                 <Route exact path="/register" element={<Register />} />
                 <Route exact path="/logout" element={<LogOut />} />
+
                 <Route exact path="/form" element={<Form />} />
               </Routes>
             </ProductState>

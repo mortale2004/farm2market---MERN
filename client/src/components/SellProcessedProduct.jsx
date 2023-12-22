@@ -1,17 +1,25 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import AlertContext from "../context/alert/AlertContext";
 import ProgressContext from "../context/progressbar/ProgressContext";
 import ReactStars from "react-stars";
 import "./css/SellProcessedProduct.css";
+import LoginContext from "../context/login/LoginContext";
 
 const SellProcessedProduct = () => {
     const a = useContext(AlertContext);
     const p = useContext(ProgressContext);
+    const l = useContext(LoginContext);
 
     const formData = new FormData();
 
     const [product, setProduct] = useState({ title: "", description: "", price: "", category: "", from: "industry", quantity: "", sold: 0, measurement: "", userId: "", rating: 0, address: "" });
     const [address, setAddress] = useState({ place: "", city: "", taluka: "", district: "", pincode: "" })
+
+    useEffect(() => {
+        l.checkUser();
+        // eslint-disable-next-line
+      }, [l.authToken])
+
 
 
     const storeAddress = async () => {

@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import AlertContext from "../context/alert/AlertContext";
 import LoginContext from "../context/login/LoginContext";
-import ProgressContext from "../context/progressbar/ProgressContext";
 import ProductContext from "../context/product/ProductContext";
 import ProductGrid from "./ProductGrid";
 import "./css/YourSells.css";
@@ -11,7 +10,6 @@ import Confirm from "./Confirm";
 const YourSells = () => {
     const a = useContext(AlertContext);
     const l = useContext(LoginContext);
-    const p = useContext(ProgressContext);
     const pr = useContext(ProductContext);
 
     const [categories, setCategories] = useState([]);
@@ -24,6 +22,7 @@ const YourSells = () => {
 
         // eslint-disable-next-line
     }, [l.authToken])
+
 
     useEffect(() => {
         setCategories([...new Set(pr.userProducts.map(pro => pro.category))]);

@@ -1,7 +1,7 @@
 .awssld {
     height: 80vh;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 auto 5rem auto;
 }
 
 @media screen and (max-width: 700px) {

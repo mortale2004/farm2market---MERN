@@ -29,7 +29,6 @@ const LoginState = ({children})=>{
             {
                 setLoggedIn(true);
                 navigator(loc.pathname);
-                a.setAlert({status:json.status, msg: ["लॉगिन यशस्वी"], isDone: false})
             }
             else
             {

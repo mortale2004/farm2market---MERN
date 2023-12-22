@@ -17,6 +17,9 @@
     align-items: center;
     justify-content: center;
 }
+.btnContainer::-webkit-scrollbar{
+    display: none;
+}
 .activeBtn{
     background: #333333;
     color: white;  

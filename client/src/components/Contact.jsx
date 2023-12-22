@@ -36,12 +36,12 @@ const Contact = () => {
 
         if (json.status === "success") {
             a.setAlert({ status: "success", msg: ["यशस्वीरित्या संदेश पाठवला..."], isDone: false })
+            setUser({ name: "", email: "", mobile: "", message: "" });
         }
         else {
             a.setAlert({ status: "danger", msg: json.result, isDone: false })
         }
 
-        setUser({ name: "", email: "", mobile: "", message: "" });
     }
 
     return (

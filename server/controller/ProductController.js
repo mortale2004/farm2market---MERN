@@ -4,6 +4,7 @@ const uploadCloud = require("../utils/cloudinary");
 const fs = require("fs");
 const {User} = require("../models/userModel");
 const {Address} = require("../models/addressModel");
+const { default: mongoose } = require("mongoose");
 
 
 
@@ -72,9 +73,10 @@ const createProduct = async (req, res) => {
             fs.unlinkSync(path);
         }
 
+        
         req.body.userId = req.user.id;
 
-        const product = await Product.create({ ...req.body, images: images });
+        const product = await Product.create({ ...req.body, images: images , address: new mongoose.mongo.ObjectId(req.body.address)});
 
         let user = await User.findById(req.user.id);
         
