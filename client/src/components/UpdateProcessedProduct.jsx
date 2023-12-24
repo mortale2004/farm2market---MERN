@@ -177,6 +177,7 @@ const UpdateProcessedProduct = () => {
                     <option value="पापड">पापड</option>
                     <option value="त्वचा उत्पादने">त्वचा उत्पादने</option>
                     <option value="औषधे">औषधे</option>
+                    <option value="कोरडे फळ">कोरडे फळ</option>
                     <option value="इतर">इतर</option>
                 </select>
 

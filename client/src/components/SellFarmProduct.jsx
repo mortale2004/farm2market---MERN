@@ -90,6 +90,7 @@ const SellFarmProduct = () => {
 
         try {
 
+            a.setAlert({ status: "success", msg: ["प्रतिमा अपलोड करत आहे..."], isDone: false })
             const response = await fetch(URL, {
                 method: "POST",
                 headers: {

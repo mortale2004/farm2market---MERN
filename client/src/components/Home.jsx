@@ -32,7 +32,7 @@ const Home = () => {
         <h1>प्रक्रिया केलेली उत्पादने</h1>
         <ProductSlider title="सॉस" items={pr.products.filter(product=>product.category==="सॉस")}/>
         <ProductSlider title="रस" items={pr.products.filter(product=>product.category==="रस")}/>
-        <ProductSlider title="पावडर" items={pr.products.filter(product=>product.category==="पावडर")}/>
+        <ProductSlider title="कोरडे फळ" items={pr.products.filter(product=>product.category==="कोरडे फळ")}/>
 
         
       </main>

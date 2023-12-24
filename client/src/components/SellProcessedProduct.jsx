@@ -89,6 +89,9 @@ const SellProcessedProduct = () => {
 
         try {
 
+            
+            a.setAlert({ status: "success", msg: ["प्रतिमा अपलोड करत आहे..."], isDone: false })
+
             const response = await fetch(URL, {
                 method: "POST",
                 headers: {
@@ -186,6 +189,7 @@ const SellProcessedProduct = () => {
                     <option value="पापड">पापड</option>
                     <option value="त्वचा उत्पादने">त्वचा उत्पादने</option>
                     <option value="औषधे">औषधे</option>
+                    <option value="कोरडे फळ">कोरडे फळ</option>
                     <option value="इतर">इतर</option>
                 </select>
 
